@@ -1,0 +1,14 @@
+galaxy_info:
+  author: Mradul Natani
+  description: Role to deploy Fast-Translit to an EKS cluster
+  license: MIT
+  min_ansible_version: 2.10
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+  galaxy_tags:
+    - kubernetes
+    - eks
+    - deploy
+dependencies: []
