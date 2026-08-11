@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fast-translit-config
+  namespace: fast-translit-prod
+data:
+  POSTGRES_USER: "fasttranslit_user"
+  POSTGRES_DB: "fasttranslit_db"
+  DATABASE_HOST: "postgres-service"
+  DATABASE_PORT: "5432"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: fast-translit-secret
+  namespace: fast-translit-prod
+type: Opaque
+stringData:
+  POSTGRES_PASSWORD: "secure_password_here" # Change this before real deployment
+  DATABASE_URL: "postgresql://fasttranslit_user:secure_password_here@postgres-service:5432/fasttranslit_db"

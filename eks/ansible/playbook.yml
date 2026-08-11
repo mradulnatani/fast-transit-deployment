@@ -1,0 +1,6 @@
+---
+- name: Deploy Fast-Translit to EKS
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - fast_translit_deploy

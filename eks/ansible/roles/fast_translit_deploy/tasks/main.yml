@@ -1,0 +1,45 @@
+---
+- name: Authenticate to EKS cluster
+  command: aws eks update-kubeconfig --region ap-south-1 --name fast-translit-cluster
+
+- name: Apply namespace
+  kubernetes.core.k8s:
+    state: present
+    src: "{{ kubernetes_manifests_dir }}/namespace.yaml"
+    kubeconfig: "{{ kubeconfig_path }}"
+
+- name: Apply config and secrets
+  kubernetes.core.k8s:
+    state: present
+    src: "{{ kubernetes_manifests_dir }}/config.yaml"
+    kubeconfig: "{{ kubeconfig_path }}"
+
+- name: Apply postgres database
+  kubernetes.core.k8s:
+    state: present
+    src: "{{ kubernetes_manifests_dir }}/postgres.yaml"
+    kubeconfig: "{{ kubeconfig_path }}"
+
+- name: Apply FastAPI deployment
+  kubernetes.core.k8s:
+    state: present
+    src: "{{ kubernetes_manifests_dir }}/deployment.yaml"
+    kubeconfig: "{{ kubeconfig_path }}"
+
+- name: Apply service
+  kubernetes.core.k8s:
+    state: present
+    src: "{{ kubernetes_manifests_dir }}/service.yaml"
+    kubeconfig: "{{ kubeconfig_path }}"
+
+- name: Apply HPA
+  kubernetes.core.k8s:
+    state: present
+    src: "{{ kubernetes_manifests_dir }}/hpa.yaml"
+    kubeconfig: "{{ kubeconfig_path }}"
+
+- name: Apply ingress
+  kubernetes.core.k8s:
+    state: present
+    src: "{{ kubernetes_manifests_dir }}/ingress.yaml"
+    kubeconfig: "{{ kubeconfig_path }}"

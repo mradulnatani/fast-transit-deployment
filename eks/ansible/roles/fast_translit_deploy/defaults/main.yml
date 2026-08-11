@@ -1,0 +1,4 @@
+---
+kubeconfig_path: "~/.kube/config"
+kubernetes_manifests_dir: "../../../Kubernetes"
+namespace: "fast-translit-prod"
